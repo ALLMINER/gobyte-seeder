@@ -1,7 +1,7 @@
-dash-seeder
+gobyte-seeder
 ==============
 
-dash-seeder is a crawler for the Dash network, which exposes a list
+gobyte-seeder is a crawler for the GoByte network, which exposes a list
 of reliable nodes via a built-in DNS server.
 
 Features:
