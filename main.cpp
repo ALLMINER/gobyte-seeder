@@ -33,7 +33,7 @@ public:
   CDnsSeedOpts() : nThreads(96), nDnsThreads(4), nPort(53), mbox(NULL), ns(NULL), host(NULL), tor(NULL), fUseTestNet(false), fWipeBan(false), fWipeIgnore(false), ipv4_proxy(NULL), ipv6_proxy(NULL) {}
 
   void ParseCommandLine(int argc, char **argv) {
-    static const char *help = "Darkcoin-seeder\n"
+    static const char *help = "GoByte-seeder\n"
                               "Usage: %s -h <host> -n <ns> [-m <mbox>] [-t <threads>] [-p <port>]\n"
                               "\n"
                               "Options:\n"
@@ -356,13 +356,13 @@ extern "C" void* ThreadStats(void*) {
   } while(1);
 }
 
-static const string mainnet_seeds[] = {"static-dnsseed.darkcoin.io", "static-dnsseed.dashdot.io", ""};
-static const string testnet_seeds[] = {"static-testnet-seed.darkcoin.io", "static-testnet-seed.dashdot.io", ""};
+static const string mainnet_seeds[] = {"seed1.gobyte.network", "seed2.gobyte.network", "seed3.gobyte.network", ""};
+static const string testnet_seeds[] = {"testnet-dns.gobyte.network", "testnet2-dns.gobyte.network", ""};
 static const string *seeds = mainnet_seeds;
 
 extern "C" void* ThreadSeeder(void*) {
   if (!fTestNet){
-    db.Add(CService("darkcoin.io", 9999), true);
+    db.Add(CService("gobyte.network", 12455), true);
   }
   do {
     for (int i=0; seeds[i] != ""; i++) {
@@ -405,10 +405,10 @@ int main(int argc, char **argv) {
   bool fDNS = true;
   if (opts.fUseTestNet) {
       printf("Using testnet.\n");
-      pchMessageStart[0] = 0xce;
-      pchMessageStart[1] = 0xe2;
-      pchMessageStart[2] = 0xca;
-      pchMessageStart[3] = 0xff;
+      pchMessageStart[0] = 0xa1;
+      pchMessageStart[1] = 0xb3;
+      pchMessageStart[2] = 0xd5;
+      pchMessageStart[3] = 0x7b;
       seeds = testnet_seeds;
       fTestNet = true;
   }
